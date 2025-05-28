@@ -9,6 +9,18 @@ api:
     key: ${API_KEY}
 
 sheets:
-    wind-id: ${WIND_SHEET_ID}
-    snow1-id: ${SNOW_1_SHEET_ID}
-    snow2-id: ${SNOW_2_SHEET_ID}
+    wind:
+        input-range: B1:B8
+        result-range: I2:AC3
+        sheet-name: wind
+        sheet-id: ${WIND_SHEET_ID}
+
+    snow1:
+        input-range: A1
+        sheet-name: snow1
+        sheet-id: ${SNOW_1_SHEET_ID}
+
+    snow2:
+        input-range: A1
+        sheet-name: snow2
+        sheet-id: ${SNOW_2_SHEET_ID}
