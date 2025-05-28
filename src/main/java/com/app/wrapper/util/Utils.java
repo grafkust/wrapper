@@ -17,21 +17,16 @@ public class Utils {
     @Value("${sheets.wind.sheet-name}")
     String windSheetName;
 
-
     @Value("${sheets.snow1.sheet-name}")
     private String firstSnowSheetName;
 
-
     @Value("${sheets.snow2.sheet-name}")
     private String secondSnowSheetName;
-
-
 
     @Autowired
     public Utils(WindSheetUtil windSheetUtil) {
         this.windSheetUtil = windSheetUtil;
     }
-
 
 
     // Метод для получения Id листа и range для расчетных данных
@@ -48,14 +43,13 @@ public class Utils {
     }
 
 
-
     // Метод для преобразования ответа (колонок для вводных данных) от googleApi в HashMap
-    public ResponseEntity<HashMap<String, Float>> convertInputCellsToMap(ResponseEntity<GeneralSheetDto> inputCells, String sheetName) {
+    public ResponseEntity<HashMap<String, Float>> convertCellsContentToMap(ResponseEntity<GeneralSheetDto> inputCells, String sheetName, boolean inputCellsNeeded) {
         if (Objects.requireNonNull(inputCells.getBody()).getValues() != null) {
             Object [][] values = inputCells.getBody().getValues();
 
             if (windSheetName.equals(sheetName)) {
-                return windSheetUtil.convertCellsToWindParams(values, true);
+                return windSheetUtil.convertCellsToWindParams(values, inputCellsNeeded);
             } else if (firstSnowSheetName.equals(sheetName)) {
                 // TODO: написать утилиту для снега 1
             } else if (secondSnowSheetName.equals(sheetName)) {
@@ -68,29 +62,6 @@ public class Utils {
         throw new IllegalArgumentException("something went wrong");
     }
 
-    // Метод для преобразования ответа (колонок с расчетными значениями) от googleApi в HashMap
-    public ResponseEntity<HashMap<String, Float>> convertResultCellsToMap(ResponseEntity<GeneralSheetDto> resultCells, String sheetName) {
-        if (Objects.requireNonNull(resultCells.getBody()).getValues() != null) {
-            Object [][] values = resultCells.getBody().getValues();
-
-            if (windSheetName.equals(sheetName)) {
-                return windSheetUtil.convertCellsToWindParams(values,false);
-            } else if (firstSnowSheetName.equals(sheetName)) {
-                // TODO: написать утилиту для снега 1
-            } else if (secondSnowSheetName.equals(sheetName)) {
-                // TODO: написать утилиту для снега 2
-            }
-
-            throw new IllegalArgumentException("sheetName: is not correct");
-
-        }
-        throw new IllegalArgumentException("something went wrong");
-
-
-
-
-
-    }
 
 
 

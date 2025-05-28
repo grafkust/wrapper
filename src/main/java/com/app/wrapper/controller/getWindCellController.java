@@ -20,19 +20,19 @@ public class getWindCellController {
     String windSheetName;
 
 
-    public getWindCellController(GoogleApiService googleApiService, Utils util) {
+    public getWindCellController(GoogleApiService googleApiService) {
         this.googleApiService = googleApiService;
     }
 
 
     @GetMapping(value = "input")
     public ResponseEntity<HashMap<String, Float>> getInput() {
-        return googleApiService.getInputCells(windSheetName);
+        return googleApiService.getCellsContent(windSheetName, true);
     }
 
     @GetMapping(value = "result")
     public ResponseEntity<HashMap<String, Float>> getResult() {
-        return googleApiService.getResultCells(windSheetName);
+        return googleApiService.getCellsContent(windSheetName, false);
     }
 
 }

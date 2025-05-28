@@ -31,32 +31,16 @@ public class GoogleApiService {
 
 
 
-//    public ResponseEntity<HashMap <String, Float>> getCells(String sheetName, boolean inputCellsNeeded) {
-//        HashMap<String, String> sheetData = util.getSheetData(inputCellsNeeded, sheetName);
-//        String sheetId = sheetData.get("id");
-//        String range = sheetData.get("range");
-//        return null;
-//    }
-
-    public ResponseEntity<HashMap <String, Float>> getInputCells(String sheetName) {
-
-        HashMap<String, String> sheetData = util.getSheetData(true, sheetName);
+    public ResponseEntity<HashMap <String, Float>> getCellsContent(String sheetName, boolean inputCellsNeeded) {
+        HashMap<String, String> sheetData = util.getSheetData(inputCellsNeeded, sheetName);
         String sheetId = sheetData.get("id");
         String range = sheetData.get("range");
 
-        ResponseEntity<GeneralSheetDto> inputCells = getCellsByRange(sheetId, range);
-        return util.convertInputCellsToMap(inputCells, sheetName);
-
+        ResponseEntity<GeneralSheetDto> cellsContent = getCellsByRange(sheetId, range);
+        return util.convertCellsContentToMap(cellsContent, sheetName, inputCellsNeeded);
     }
 
-    public ResponseEntity<HashMap<String, Float>> getResultCells(String sheetName) {
-        HashMap<String, String> sheetData = util.getSheetData(false, sheetName);
-        String sheetId = sheetData.get("id");
-        String range = sheetData.get("range");
-        ResponseEntity<GeneralSheetDto> resultCells = getCellsByRange(sheetId, range);
-        return util.convertResultCellsToMap(resultCells, sheetName);
 
-    }
 
 
     private ResponseEntity<GeneralSheetDto> getCellsByRange(String sheetId, String range) {
