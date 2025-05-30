@@ -1,12 +1,13 @@
 package com.app.wrapper.controller;
 
+import com.app.wrapper.model.GoogleSheetsUpdateRequestDto;
+import com.app.wrapper.model.GoogleSheetsUpdateResponseDto;
+import com.app.wrapper.model.outh.TokenStorage;
+import com.app.wrapper.outh.ServiceAccountTokenService;
 import com.app.wrapper.service.GoogleApiService;
-import com.app.wrapper.util.Utils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
@@ -15,13 +16,15 @@ import java.util.HashMap;
 public class getWindCellController {
 
     private final GoogleApiService googleApiService;
+    private final ServiceAccountTokenService tokenService;
 
     @Value("${sheets.wind.sheet-name}")
     String windSheetName;
 
 
-    public getWindCellController(GoogleApiService googleApiService) {
+    public getWindCellController(GoogleApiService googleApiService, ServiceAccountTokenService tokenService) {
         this.googleApiService = googleApiService;
+        this.tokenService = tokenService;
     }
 
 
@@ -34,5 +37,11 @@ public class getWindCellController {
     public ResponseEntity<HashMap<String, Float>> getResult() {
         return googleApiService.getCellsContent(windSheetName, false);
     }
+
+    @PutMapping(value = "update")
+    public ResponseEntity<GoogleSheetsUpdateResponseDto> update(@RequestBody GoogleSheetsUpdateRequestDto inputData) {
+        return googleApiService.updateCellsContent(windSheetName, inputData,true);
+    }
+
 
 }

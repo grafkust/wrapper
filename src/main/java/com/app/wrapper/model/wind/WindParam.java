@@ -1,4 +1,4 @@
-package com.app.wrapper.util.constants.wind;
+package com.app.wrapper.model.wind;
 
 public interface WindParam {
     String getKey();

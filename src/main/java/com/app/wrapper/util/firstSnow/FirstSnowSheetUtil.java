@@ -1,4 +1,4 @@
-package com.app.wrapper.util.constants.firstSnow;
+package com.app.wrapper.util.firstSnow;
 
 import org.springframework.beans.factory.annotation.Value;
 

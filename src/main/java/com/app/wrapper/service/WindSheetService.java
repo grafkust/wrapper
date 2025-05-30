@@ -1,11 +1,16 @@
-package com.app.wrapper.util.constants.wind;
+package com.app.wrapper.service;
 
+import com.app.wrapper.model.wind.WindInputParams;
+import com.app.wrapper.model.wind.WindOutputParams;
+import com.app.wrapper.model.wind.WindParam;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 
-public class WindSheetUtil {
+@Service
+public class WindSheetService {
 
     @Value("${sheets.wind.sheet-id}")
     private String sheetId;

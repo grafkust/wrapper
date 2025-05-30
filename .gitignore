@@ -33,4 +33,4 @@ build/
 .vscode/
 .env
 setup-java21.ps1
-
+src/main/resources/serviceAccountCredentials.json
