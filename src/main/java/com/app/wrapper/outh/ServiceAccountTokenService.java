@@ -3,7 +3,6 @@ package com.app.wrapper.outh;
 import com.app.wrapper.model.outh.ServiceAccountCredentials;
 import com.app.wrapper.model.outh.TokenStorage;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -47,12 +46,12 @@ public class ServiceAccountTokenService {
 
         try {
             return Jwts.builder()
-                    .setIssuer(credentials.getClientEmail())
-                    .setAudience(tokenUrl)
+                    .issuer(credentials.getClientEmail())
+                    .audience().add(tokenUrl).and()
                     .claim("scope", scopeUrl)
-                    .setIssuedAt(new Date(now * 1000))
-                    .setExpiration(new Date((now + 3600) * 1000))
-                    .signWith(getPrivateKey(), SignatureAlgorithm.RS256)
+                    .issuedAt(new Date(now * 1000))
+                    .expiration(new Date((now + 3600) * 1000))
+                    .signWith(getPrivateKey())
                     .compact();
         } catch (Exception e) {
             throw new RuntimeException(e);
