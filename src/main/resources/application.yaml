@@ -10,8 +10,6 @@ spring:
 
 api:
     key: ${API_KEY}
-    client-email: ${CLIENT_EMAIL}
-    private-key: ${PRIVATE_KEY}
 
 service-account:
     file-name: serviceAccountCredentials.json
