@@ -1,0 +1,34 @@
+
+
+spring:
+    google-api:
+        get-cell-url: https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}
+        update-cell-url: https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}
+        token-url: https://oauth2.googleapis.com/token
+        scope: https://www.googleapis.com/auth/spreadsheets
+
+
+api:
+    key: ${API_KEY}
+    client-email: ${CLIENT_EMAIL}
+    private-key: ${PRIVATE_KEY}
+
+service-account:
+    file-name: serviceAccountCredentials.json
+
+sheets:
+    wind:
+        input-range: B1:B8
+        result-range: I2:AC3
+        sheet-name: wind
+        sheet-id: ${WIND_SHEET_ID}
+
+    snow1:
+        input-range: A1
+        sheet-name: snow1
+        sheet-id: ${SNOW_1_SHEET_ID}
+
+    snow2:
+        input-range: A1
+        sheet-name: snow2
+        sheet-id: ${SNOW_2_SHEET_ID}
