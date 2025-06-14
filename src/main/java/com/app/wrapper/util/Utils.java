@@ -1,7 +1,7 @@
 package com.app.wrapper.util;
 
 import com.app.wrapper.model.GeneralSheetDto;
-import com.app.wrapper.service.WindSheetService;
+import com.app.wrapper.service.wind.WindSheetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +30,8 @@ public class Utils {
     }
 
 
-    // Метод для получения Id листа и range для расчетных данных
+    /** Метод для получения Id листа и range для расчетных данных
+     */
     public HashMap <String, String> getSheetData(boolean inputDataNeed, String sheetName) {
         if (windSheetName.equals(sheetName)) {
             return windSheetService.getData(inputDataNeed);
@@ -44,7 +45,9 @@ public class Utils {
     }
 
 
-    // Метод для преобразования ответа (колонок для вводных данных) от googleApi в HashMap
+    /**
+     *  Метод для преобразования ответа (колонок для вводных данных) от googleApi в HashMap
+    */
     public ResponseEntity<HashMap<String, Float>> convertCellsContentToMap(ResponseEntity<GeneralSheetDto> inputCells, String sheetName, boolean inputCellsNeeded) {
         if (Objects.requireNonNull(inputCells.getBody()).getValues() != null) {
             Object [][] values = inputCells.getBody().getValues();
@@ -62,13 +65,6 @@ public class Utils {
         }
         throw new IllegalArgumentException("something went wrong");
     }
-
-
-
-
-
-
-
 
 
 }

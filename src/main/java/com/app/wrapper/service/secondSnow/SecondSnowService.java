@@ -1,8 +1,8 @@
-package com.app.wrapper.util.secondSnow;
+package com.app.wrapper.service.secondSnow;
 
 import org.springframework.beans.factory.annotation.Value;
 
-public class SecondSnowSheetUtil {
+public class SecondSnowService {
 
 
     @Value("${sheets.snow2.sheet-id}")

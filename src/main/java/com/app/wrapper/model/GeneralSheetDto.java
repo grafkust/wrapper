@@ -15,10 +15,8 @@ public class GeneralSheetDto {
     @JsonProperty("majorDimension")
     private String majorDimension;
 
+    @Getter
     @JsonProperty("values")
     private Object[][] values;
 
-    public Object[][] getValues() {
-        return values;
-    }
 }

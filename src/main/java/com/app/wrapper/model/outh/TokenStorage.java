@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TokenStorage {
 
+    @Getter
     @JsonProperty("access_token")
     private String accessToken;
 
@@ -20,19 +22,8 @@ public class TokenStorage {
     @JsonIgnore
     private LocalDateTime expiredAt;
 
-
-    public boolean isExpired() {
-        return expiredAt != null && expiredAt.isBefore(LocalDateTime.now());
-    }
-
     public void calculateExpiredAt() {
         this.expiredAt = LocalDateTime.now().plusSeconds(expiresIn);
     }
-
-
-    public String getAccessToken() {
-        return accessToken;
-    }
-
 
 }

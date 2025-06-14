@@ -3,7 +3,9 @@ package com.app.wrapper.model.outh;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.Getter;
 
+@Getter
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ServiceAccountCredentials {
@@ -14,11 +16,4 @@ public class ServiceAccountCredentials {
     @JsonProperty("private_key")
     private String privateKey;
 
-    public String getClientEmail() {
-        return clientEmail;
-    }
-
-    public String getPrivateKey() {
-        return privateKey;
-    }
 }

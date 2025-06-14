@@ -1,5 +1,8 @@
 package com.app.wrapper.model.wind;
 
+import lombok.Getter;
+
+@Getter
 public enum WindOutputParams implements WindParam{
 
     // Первая строка (индекс 0)
@@ -57,18 +60,6 @@ public enum WindOutputParams implements WindParam{
         this.key = key;
         this.row = row;
         this.col = col;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public Integer getRow() {
-        return row;
-    }
-
-    public Integer getCol() {
-        return col;
     }
 
 }

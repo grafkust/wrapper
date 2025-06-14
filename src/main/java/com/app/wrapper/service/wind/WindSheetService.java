@@ -1,4 +1,4 @@
-package com.app.wrapper.service;
+package com.app.wrapper.service.wind;
 
 import com.app.wrapper.model.wind.WindInputParams;
 import com.app.wrapper.model.wind.WindOutputParams;
@@ -43,16 +43,10 @@ public class WindSheetService {
     }
 
 
-
     private void putData(HashMap<String, Float> map, WindParam res, Object[][] resultCells){
         String value = (String) resultCells[res.getRow()][res.getCol()];
         value = value.replace(",", ".");
         map.put(res.getKey(), Float.parseFloat(value));
     }
-
-
-
-
-
 
 }

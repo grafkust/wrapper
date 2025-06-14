@@ -30,6 +30,4 @@ public class Configuration {
         return mapper.readValue(inputStream, ServiceAccountCredentials.class);
     }
 
-
-
 }

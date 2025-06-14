@@ -54,6 +54,13 @@ public class GoogleApiService {
     }
 
 
+    public ResponseEntity<GoogleSheetsUpdateResponseDto> updateCellsContent(String sheetName, GoogleSheetsUpdateRequestDto inputData, boolean isInputCells) {
+        HashMap<String, String> sheetData = util.getSheetData(isInputCells, sheetName);
+        String sheetId = sheetData.get("id");
+        String range = sheetData.get("range");
+        return updateCellsContent(sheetId, range, inputData);
+    }
+
     private ResponseEntity<GoogleSheetsUpdateResponseDto> updateCellsContent(String sheetId, String range, GoogleSheetsUpdateRequestDto inputData) {
         String url = generateUrl(updateCellUrl, false, sheetId, range);
         String accessToken = tokenService.getAccessToken();
@@ -67,14 +74,6 @@ public class GoogleApiService {
     }
 
 
-    public ResponseEntity<GoogleSheetsUpdateResponseDto> updateCellsContent(String sheetName, GoogleSheetsUpdateRequestDto inputData, boolean isInputCells) {
-        HashMap<String, String> sheetData = util.getSheetData(isInputCells, sheetName);
-        String sheetId = sheetData.get("id");
-        String range = sheetData.get("range");
-        return updateCellsContent(sheetId, range, inputData);
-    }
-
-
     private String generateUrl(String baseUrl, boolean isKeyNeeded, String sheetId, String range) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(baseUrl);
 
@@ -85,6 +84,6 @@ public class GoogleApiService {
         }
 
         return builder.buildAndExpand(sheetId, range).toUriString();
-
     }
+
 }

@@ -18,7 +18,6 @@ public class getWindCellController {
     @Value("${sheets.wind.sheet-name}")
     String windSheetName;
 
-
     public getWindCellController(GoogleApiService googleApiService) {
         this.googleApiService = googleApiService;
     }

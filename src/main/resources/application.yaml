@@ -1,12 +1,9 @@
-
-
 spring:
     google-api:
         get-cell-url: https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}
         update-cell-url: https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}
         token-url: https://oauth2.googleapis.com/token
         scope: https://www.googleapis.com/auth/spreadsheets
-
 
 api:
     key: ${API_KEY}
